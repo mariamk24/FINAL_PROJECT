@@ -1,0 +1,18 @@
+body {
+  background-color: lightblue;
+  color: navy;
+  text-align: center;
+  font-family: Century Gothic, sans-serif;
+  font-size: 30px;
+}
+h1 {
+  color: purple;
+  text-align: center;
+  font-size: 70px;
+  font-family: bernard mt condensed;
+}
+
+.button {
+  height:50px;
+  width:120px;
+}

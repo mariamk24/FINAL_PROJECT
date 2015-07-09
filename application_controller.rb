@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.require
 require_relative './models/restaurant.rb'
+
 class ApplicationController < Sinatra::Base
 
   get '/' do

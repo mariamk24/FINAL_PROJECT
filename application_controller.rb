@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/food-specs' do
-    @foodchoice = params[:foodchoice].split(" ")
+    @foodchoice = params[:foodchoice].split(10.chr)
     @foodchoice = @foodchoice[rand(@foodchoice.length)]
     erb :displaychoice
   end
@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
   end
   
   post '/restaurant' do
-    @foodchoice = params[:foodchoice].split(" ")
+    @foodchoice = params[:foodchoice].split(10.chr)
     @foodchoice = @foodchoice[rand(@foodchoice.length)]
     erb :displaychoice
   end

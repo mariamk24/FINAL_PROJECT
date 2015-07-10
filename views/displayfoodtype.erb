@@ -1,2 +1,7 @@
+
 <h1>Your food genre is:...<br></h1>
-<h3><%= @foodtype %></h3>
+<h3>
+  <% y = @jank.get_cuisines %>
+  <% x = @foodtype.keys[rand(@foodtype.keys.length)] %>
+  <%= y[x.to_i] %>
+</h3>

@@ -2,7 +2,7 @@
     (You can choose more than one)</h1>
 <form method="POST" action="displayfoodtype">
   <ul><% @jank.get_cuisines.each do |x| %>
-    <li><input type="checkbox" name="foodtype"><%= x %></li>
+    <li><input type="checkbox" name=<%= @jank.get_cuisines.find_index(x) %> ><%= x %></li>
     <% end %>
   </ul>
   <input type="submit" value="Enter"/>

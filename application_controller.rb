@@ -3,6 +3,7 @@ Bundler.require
 
 require_relative './models/restaurant.rb'
 require_relative './models/foodtype.rb'
+require_relative './models/caesar.rb'
 require 'pry'
 # require 'nokogiri'
 # require 'open-uri'
@@ -35,26 +36,6 @@ class ApplicationController < Sinatra::Base
   
   get '/foodtype' do
 #     binding.pry
-    class ScrapeBBC
-
-      attr_accessor :HTML, :Noko
-      def initialize(url)
-        @HTML = open(url)
-        @Noko = Nokogiri::HTML(@HTML)
-      end
-
-      def get_cuisines
-        cuisines = @Noko.css("span").collect do |x|
-          x.text
-        end
-        cuisines.pop
-        cuisines.shift
-        cuisines.shift
-        cuisines.shift
-        cuisines.shift
-        cuisines
-      end
-    end
 
     @jank = ScrapeBBC.new("http://www.bbc.co.uk/food/cuisines")
     erb :foodtype
@@ -64,28 +45,12 @@ class ApplicationController < Sinatra::Base
     erb :displaychoice
   end
   
+  post '/cipher' do
+    @cipherable = caesar_encrypt(params[:k].to_i, params[:cipherable])
+    erb :cipher
+  end
+  
   post '/displayfoodtype' do
-    class ScrapeBBC
-
-      attr_accessor :HTML, :Noko
-      def initialize(url)
-        @HTML = open(url)
-        @Noko = Nokogiri::HTML(@HTML)
-      end
-
-      def get_cuisines
-        cuisines = @Noko.css("span").collect do |x|
-          x.text
-        end
-        cuisines.pop
-        cuisines.shift
-        cuisines.shift
-        cuisines.shift
-        cuisines.shift
-        cuisines
-      end
-    end
-
     @jank = ScrapeBBC.new("http://www.bbc.co.uk/food/cuisines")
     @foodtype = params
     erb :displayfoodtype

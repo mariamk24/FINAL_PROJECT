@@ -8,21 +8,22 @@ require 'nokogiri'
 
 class ScrapeBBC
 
-      attr_accessor :HTML, :Noko
-      def initialize(url)
-        @HTML = open(url)
-        @Noko = Nokogiri::HTML(@HTML)
-      end
+  attr_accessor :HTML, :Noko
+  def initialize(url)
+    @HTML = open(url)
+    @Noko = Nokogiri::HTML(@HTML)
+  end
 
-      def get_cuisines
-        cuisines = @Noko.css("span").collect do |x|
-          x.text
-        end
-        cuisines.pop
-        cuisines.shift
-        cuisines.shift
-        cuisines.shift
-        cuisines.shift
-        cuisines
-      end
+  def get_cuisines
+    cuisines = @Noko.css("span").collect do |x|
+      x.text
     end
+    cuisines.pop
+    cuisines.shift
+    cuisines.shift
+    cuisines.shift
+    cuisines.shift
+    cuisines
+  end
+
+end

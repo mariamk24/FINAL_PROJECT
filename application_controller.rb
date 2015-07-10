@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
     erb :food_spec
   end
   
-  post '/restaurants' do
+  post '/restaurant' do
     @foodchoice = params[:foodchoice].split(" ")
     @foodchoice = @foodchoice[rand(@foodchoice.length)]
     erb :displaychoice
@@ -65,7 +65,29 @@ class ApplicationController < Sinatra::Base
   end
   
   post '/displayfoodtype' do
-    @foodtype = params[:foodtype]
+    class ScrapeBBC
+
+      attr_accessor :HTML, :Noko
+      def initialize(url)
+        @HTML = open(url)
+        @Noko = Nokogiri::HTML(@HTML)
+      end
+
+      def get_cuisines
+        cuisines = @Noko.css("span").collect do |x|
+          x.text
+        end
+        cuisines.pop
+        cuisines.shift
+        cuisines.shift
+        cuisines.shift
+        cuisines.shift
+        cuisines
+      end
+    end
+
+    @jank = ScrapeBBC.new("http://www.bbc.co.uk/food/cuisines")
+    @foodtype = params
     erb :displayfoodtype
   end
 end
